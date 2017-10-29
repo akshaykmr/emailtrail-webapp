@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6eaac989ae79af28b7d62b1ce2405a2b63efd8bed85cb2268bb0d3ea8ac84d0e"
+            "sha256": "e38b53ec5b57913eebcb3130a2fa2428dea4671cd6812245f2895225cd669abf"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -42,16 +42,17 @@
         },
         "emailtrail": {
             "hashes": [
-                "sha256:c104208b22a69e36ccd84619d6f29d1806735c840b239fa1032c97a7dfe7c018"
+                "sha256:3059c6a33e347479268d180796bd2eb81c52c63fc943f77125db2807872453ce"
             ],
-            "version": "==0.3.17"
+            "version": "==0.3.20"
         },
-        "gunicorn": {
+        "paste": {
             "hashes": [
-                "sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6",
-                "sha256:eee1169f0ca667be05db3351a0960765620dad53f53434262ff8901b68a1b622"
+                "sha256:9d17d06cd95d700acb7be449a02c13db28449de2adaf0f45339f4a310601f096",
+                "sha256:fc0de2f2fb1f50f2b2b986993e57a840f98ffba03e3e5260a37382c326be6a31",
+                "sha256:2346a347824c32641bf020c17967b49ae74d3310ec1bc9b958d4b84e2d985218"
             ],
-            "version": "==19.7.1"
+            "version": "==2.0.3"
         },
         "python-dateutil": {
             "hashes": [

@@ -7,8 +7,15 @@ name = "pypi"
 "flake8" = "*"
 
 
+
+
+
+
+
+
+
 [packages]
 
 bottle = "*"
-gunicorn = "*"
-emailtrail = "==0.3.17"
+emailtrail = "==0.3.20"
+paste = "*"
