@@ -1,4 +1,5 @@
-from bottle import request, response, HTTPResponse, Bottle
+import os
+from bottle import request, HTTPResponse, Bottle, static_file
 from emailtrail import (
     analyse,
     analyse_hop,
@@ -12,6 +13,22 @@ from emailtrail import (
 app = Bottle()
 version = 1.00
 
+# ---------- static -----------#
+local_path = os.path.abspath(os.path.dirname(__file__))
+frontend_path = os.path.join(local_path, 'frontend')
+
+
+@app.route('/<filename:path>')
+def send_static(filename):
+    return static_file(filename, root=frontend_path)
+
+
+@app.get('/')
+def send_index():
+    return static_file('index.html', root=frontend_path)
+
+
+# ---------- API -------------- #
 
 @app.get('/api/v1/health')
 def health():
@@ -21,12 +38,6 @@ def health():
 @app.get('/api/v1/version')
 def version():
     return HTTPResponse(version, status=200)
-
-
-@app.get('/')
-def index():
-    response.content_type = 'text/plain; charset=utf-8'
-    return 'hello'
 
 
 @app.post('/api/v1/analyse')
