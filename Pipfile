@@ -4,6 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [dev-packages]
+"flake8" = "*"
+
 
 [packages]
+
 bottle = "*"
+gunicorn = "*"
+emailtrail = "==0.3.17"
