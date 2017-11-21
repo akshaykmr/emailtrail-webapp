@@ -9,7 +9,9 @@
       <textarea class="glowing-border" id="email-source" rows="15" v-model="email"
       placeholder="Paste email headers here and then click analyse 🔍">
       </textarea>
-      <div class="submit-button" v-bind:class="{ disabled: email.trim() === ''}" v-on:click="analyseEmail">Analyse</div>
+      <div class="submit-button" v-bind:class="{ disabled: email.trim() === ''}" v-on:click="analyseEmail">
+        {{submitButtonMessage}}
+      </div>
     </div>
     <div class="loader" v-if="loading">
     </div>
@@ -17,7 +19,7 @@
       {{errorMessage}}
     </div>
 
-    <div class="analysis" v-if="lastAnalysedEmail === email.trim() && email.trim() !== ''">
+    <div class="analysis" v-if="analysisExists">
       <div v-if="!loading">
         lorem
       </div>
@@ -41,6 +43,20 @@ export default {
       lastAnalysedEmail: '',
       errorMessage: 'Something went wrong... Check your input or try again, else reach me on twitter: @uberakshay',
     };
+  },
+  computed: {
+    analysisExists: function() {
+      return this.lastAnalysedEmail === this.email.trim() && this.email.trim() !== '';
+    },
+
+    submitButtonMessage: function() {
+      if(this.analysisExists) {
+        return 'Analysis 👇';
+      } else if (this.loading) {
+        return 'Analysing 🔎'
+      }
+      return 'Analyse ☝️';
+    },
   },
   methods: {
     loadSampleEmail: function(event) {
@@ -86,7 +102,7 @@ export default {
     font-size: 20px;
     background: #799e8a;
     padding: 10px 20px 10px 20px;
-    width: 120px;
+    width: 160px;
     margin: 0 auto;
 
     &.disabled {
