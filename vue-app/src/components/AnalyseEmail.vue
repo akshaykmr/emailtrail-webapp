@@ -75,7 +75,6 @@ export default {
           this.error = '';
           this.loading = false;
           this.lastAnalysedEmail = email;
-          console.log(this.analysis)
         })
         .catch((error) => {
           console.log(error);
