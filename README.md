@@ -1,8 +1,8 @@
-# A simple web application for analysing hops taken by an email to reach you.
+#### A simple web application for analysing hops taken by an email to reach you.
 
-### [Demo link](https://emailtrail.herokuapp.com)
-### Uses the [emailtrail python module](https://github.com/akshayKMR/emailtrail)
-### Screenshots
+#### [Demo link](https://emailtrail.herokuapp.com)
+#### Uses the [emailtrail python module](https://github.com/akshayKMR/emailtrail)
+#### Screenshots
 
 <img align="center" src="https://i.imgur.com/AQguHJj.png">
 
