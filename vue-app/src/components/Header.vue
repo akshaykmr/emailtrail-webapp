@@ -1,5 +1,8 @@
 <template>
   <div class="header" v-bind:class="{ hasDelay }">
+    <span v-if="hasDelay" class="delay">
+      {{duration}}
+    </span>
     <div v-if="headerDetails.timestamp !== ''" class="calender-time">
       <span>{{ calenderTime }}</span>
     </div>
@@ -14,9 +17,6 @@
         <span> <span class="field">By:</span> <span class="value"> {{headerDetails.receivedBy}}</span> </span>
       </div>
     </div>
-    <span v-if="hasDelay" class="delay">
-      {{duration}}
-    </span>
   </div>
 </template>
 
@@ -68,7 +68,7 @@ $calender-color: #0e4246;
   box-shadow: 0px 0px 13px -7px rgba(0,0,0,0.75);
 
   &.hasDelay {
-    margin-bottom: 100px;
+    margin-top: 100px;
   }
   .from-by-fields {
     margin-top: 8px;
@@ -129,7 +129,7 @@ $calender-color: #0e4246;
     height: 50px;
     border-radius: 10px;
     left: calc(50% - 120px);
-    top: calc(100% + 25px);
+    top: calc(-75px);
     color: white;
     background-color: darksalmon;
     line-height: 50px;
