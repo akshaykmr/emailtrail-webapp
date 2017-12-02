@@ -8,7 +8,7 @@
 
 <br>
 
-<img align="center" src="https://i.imgur.com/jrdktzc.png">
+<img align="center" src="https://i.imgur.com/zicQ94L.png">
 
 #### Development
 
