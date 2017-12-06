@@ -42,6 +42,10 @@ export default {
       return typeof(delay) === 'number' && delay > 0;
     },
     duration: function(){
+      const { delay } = this.headerDetails;
+      if(delay < 60) {
+        return `${delay} second${delay > 1 ? 's':''}`
+      }
       return moment.duration(this.headerDetails.delay, 'seconds').humanize();
     }
   },
