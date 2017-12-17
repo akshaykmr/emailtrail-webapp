@@ -12,5 +12,5 @@ python_version = "2.7"
 [packages]
 
 bottle = "*"
-emailtrail = "==0.3.20"
+emailtrail = "==0.3.21"
 paste = "*"
