@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "emailtrail-webapp"
+version = "0.1.0"
+description = ""
+authors = ["Akshay Kumar <akshay.kmr4321@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+bottle = "^0.12.19"
+emailtrail = "^0.4.0"
+Paste = "^3.5.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^3.9.2"
+black = "^21.8b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

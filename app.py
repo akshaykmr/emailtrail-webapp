@@ -1,8 +1,8 @@
 import os
 from bottle import request, HTTPResponse, Bottle, static_file
 from emailtrail import (
-    analyse,
-    analyse_hop,
+    analyse_headers,
+    analyse_single_header,
     extract_protocol,
     extract_from_label,
     extract_received_by_label,
@@ -42,12 +42,12 @@ def version():
 
 @app.post('/api/v1/analyse')
 def email_analysis():
-    return {"analysis": analyse(request.body.read())}
+    return {"analysis": analyse_headers(request.body.read())}
 
 
 @app.post('/api/v1/analyse_hop')
 def hop_analysis():
-    return {"hop_analysis": analyse_hop(request.body.read())}
+    return {"hop_analysis": analyse_single_header(request.body.read())}
 
 
 @app.post('/api/v1/extract_protocol')
