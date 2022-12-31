@@ -3,10 +3,7 @@ from bottle import request, HTTPResponse, Bottle, static_file
 from emailtrail import (
     analyse_headers,
     analyse_single_header,
-    extract_protocol,
-    extract_from_label,
-    extract_received_by_label,
-    extract_timestamp
+    Hop,
 )
 
 
@@ -15,56 +12,65 @@ version = 1.00
 
 # ---------- static -----------#
 local_path = os.path.abspath(os.path.dirname(__file__))
-frontend_path = os.path.join(local_path, 'frontend')
+frontend_path = os.path.join(local_path, "frontend")
 
 
-@app.route('/<filename:path>')
+def _read_body() -> str:
+    return request.body.read().decode("utf-8")
+
+
+@app.route("/<filename:path>")
 def send_static(filename):
     return static_file(filename, root=frontend_path)
 
 
-@app.get('/')
+@app.get("/")
 def send_index():
-    return static_file('index.html', root=frontend_path)
+    return static_file("index.html", root=frontend_path)
 
 
 # ---------- API -------------- #
 
-@app.get('/api/v1/health')
+
+@app.get("/api/v1/health")
 def health():
     return HTTPResponse(status=200)
 
 
-@app.get('/api/v1/version')
+@app.get("/api/v1/version")
 def version():
     return HTTPResponse(version, status=200)
 
 
-@app.post('/api/v1/analyse')
+# Keep old contract
+
+
+def _hop_resource(h: Hop) -> dict:
+    return {
+        "from": h.from_host,
+        "protocol": h.protocol,
+        "receivedBy": h.received_by_host,
+        "timestamp": h.timestamp,
+        "delay": h.delay,
+    }
+
+
+@app.post("/api/v1/analyse")
 def email_analysis():
-    return {"analysis": analyse_headers(request.body.read())}
+    trail = analyse_headers(_read_body())
+    return {
+        "analysis": {
+            "To": trail.to_address,
+            "From": trail.from_address,
+            "Cc": trail.cc,
+            "Bcc": trail.bcc,
+            "total_delay": trail.total_delay,
+            "trail": [_hop_resource(h) for h in trail.hops],
+        }
+    }
 
 
-@app.post('/api/v1/analyse_hop')
+@app.post("/api/v1/analyse_hop")
 def hop_analysis():
-    return {"hop_analysis": analyse_single_header(request.body.read())}
-
-
-@app.post('/api/v1/extract_protocol')
-def protocol():
-    return {"protocol": extract_protocol(request.body.read())}
-
-
-@app.post('/api/v1/extract_from_label')
-def from_label():
-    return {"from": extract_from_label(request.body.read())}
-
-
-@app.post('/api/v1/extract_received_by_label')
-def received_by_label():
-    return {"by": extract_received_by_label(request.body.read())}
-
-
-@app.post('/api/v1/extract_timestamp')
-def timestamp():
-    return {"timestamp": extract_timestamp(request.body.read())}
+    hop = analyse_single_header(_read_body())
+    return {"hop_analysis": _hop_resource(hop)}
