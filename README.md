@@ -1,6 +1,6 @@
 #### A simple web application for analysing hops taken by an email to reach you.
 
-#### [Demo link](https://emailtrail.herokuapp.com)
+#### [Demo link](https://emailtrail.oorja.io)
 #### Uses the [emailtrail python module](https://github.com/akshayKMR/emailtrail)
 #### Screenshots
 
@@ -13,9 +13,10 @@
 #### Development
 
 - Fork and clone the repository
-- Install dependencies: `pipenv install --dev`
+- Build container `docker build -t emailtrail .`
+- Run Docker container with `docker run --network host emailtrail`
 - View `app.py` to know about available api methods
-- Run the api server: `python run.py 8080`
+
 - Frontend:
   - Its a single page app made with vue.js
   - `cd vue-app`
