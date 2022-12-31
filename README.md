@@ -18,6 +18,7 @@
 - View `app.py` to know about available api methods
 
 - Frontend:
+  - This repo is pretty old so you may have trouble running frontend app. Setup asdf to run with node 4.0 LTS.
   - Its a single page app made with vue.js
   - `cd vue-app`
   - Install dependencies: `npm install`
