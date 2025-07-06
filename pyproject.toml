@@ -3,6 +3,7 @@ name = "emailtrail-webapp"
 version = "0.2.0"
 description = ""
 authors = ["Akshay Kumar <akshay.kmr4321@gmail.com>"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.9"
