@@ -2,6 +2,7 @@ FROM python:3.10.4-slim-buster
 
 ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
+ENV PORT=8080
 
 RUN pip install --upgrade pip wheel && \
     pip install poetry
@@ -15,6 +16,4 @@ RUN poetry config virtualenvs.create false && \
 
 COPY . /usr/emailtrail/
 
-EXPOSE 8080
-
-CMD ["python", "run.py", "8080"]
+CMD ["sh", "-c", "python run.py $PORT"]
